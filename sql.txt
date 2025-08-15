@@ -1,0 +1,23 @@
+create database JWT;
+
+use JWT;
+DROP TABLE Users;
+CREATE TABLE Users (
+    uId int NOT NULL AUTO_INCREMENT UNIQUE,
+    uEmail varchar(100) NOT NULL UNIQUE,
+    uPass varchar(30) COLLATE latin1_general_cs NOT NULL,
+    uProfile varchar(35) COLLATE latin1_general_cs NOT NULL,
+
+    PRIMARY KEY (uId)
+);
+
+use JWT;
+DROP TABLE Users;
+CREATE TABLE incompleteUser (
+    uId int NOT NULL AUTO_INCREMENT UNIQUE,
+    uEmail varchar(100) NOT NULL UNIQUE,
+    uPass varchar(30) COLLATE latin1_general_cs NOT NULL,
+    varificationCode varchar(6) NOT NULL,
+    
+    PRIMARY KEY (uId)
+);
