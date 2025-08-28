@@ -52,7 +52,7 @@ the following errors codes are also possible
 
 
 ##### Confirm_User
-this interface transition a user cocount from the [IC](#Incomplete-User) table to the 'User' table
+this interface transition a user cocount from the [Incomplete User](#Incomplete-User) table to the 'User' table
 - email : users account email.
 - code : emailed code.\
 
@@ -64,7 +64,7 @@ errors
 
 
 ##### Create_User
-this interface create an entry in the 'Incomplete_User' table and emails the accompanying varifcation code to the user this interface expects
+this interface create an entry in the [Incomplete User](#Incomplete-User)' table and emails the accompanying varifcation code to the user this interface expects
 - email : email of the new account
 - password : password for the new account.\
 
@@ -76,7 +76,7 @@ errors
 
 
 ##### Reset_Send
-this interface initaites the revocer user sequnce by adding an entry to 'Recover_User' and email the user a recovery code, it requires the following data
+this interface initaites the revocer user sequnce by adding an entry to [Recover User](#Recover-User) and email the user a recovery code, it requires the following data
 - email : email of the account to be reset.\
 
 the calling process recieves nothing when a succesful request is made
