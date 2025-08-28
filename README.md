@@ -1,10 +1,10 @@
 # Implementation of JSON Web Token(JWT) like system
 
 ## sections
-[What is a JWT](#What_is_a_JWT)
-[System breakdown](#System_breakdown)
+[What is a JWT](#What-is-a-JWT)
+[System breakdown](#System-breakdown)
 [API](#API)
-[SQL](#SQL_Database)
+[SQL](#sql-database)
 
 
 
