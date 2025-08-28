@@ -19,17 +19,17 @@ this section details the APIs that are implemented to facilitate this system. Al
 
 #### [Get_Access_Token](#Get_Access_Token)
   generates a new JWT 
-#### Confirm_User
+#### [Confirm_User](#Confirm_User)
   uses an emial code to create fully usable user account
-#### Create_User
+#### [Create_User](#Create_User)
   creates a semifunction user account and sends the confirmation code
-#### Login
+#### [Login](#Login)
   logs a user in and return a JWT and refresh token
-#### Reset_Send
+#### [Reset_Send](#Reset_Send)
   sends a email to let a user reset a password
-#### Reset_Receive
+#### [Reset_Receive](#Reset_Receive)
   uses a email code to reset usrs password  
-#### Validate_Access_Token
+#### [Validate_Access_Token](#Validate_Access_Token)
   varifies the claims of an access token (then does work)
 
 ##### Get_Access_Token
