@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Implementation of JSON Web Token(JWT) like system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## sections
+What is a JWT and what i am doing
+System break down
+API
+SQL
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+### What is a JWT
+the documentation for JWT can be found here https://www.jwt.io/introduction, put simply a JWT is a system of information varification using hashing. A JWT has there feilds a header a payload and a signiture. The header and body are hashed together to create the signature meaning that a web resource with access to the key can verify the 'claims' made by the header and payload. This has many potentail applications and in this case is used as a way for the application user to varify oneself without always having to send a password to the server.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### System breakdown
+This systems implements JWT for user varificarion. The appliation offers user account create with email rerificaion, user login and account reseting through email. when a user has provided the correct credentials and been verfied (login, successful email varification of a new account and a successful emial password reset) the user recieves a JWT and a refresh token. The systems operates heirachyically JWT could potentially sent over the internet hundreds of times to access recourses and so are only give a short lifespan (editable in C:\xampp\htdocs\JWT\src\token_configuration.json). Refresh tokens are more pwoerful as they can be used to create JWTs but are used less frequently to mimise risk. the users actual credentials are the most import, being able to genreate an unlimited numbre of refresh tokens, these credentials are only exposed a single time at the intial varifaction fro the session.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### API
+this section details the APIs that the client uses. the current set up uses POST
+talk about post format
 
-### `npm test`
+#### Get_Access_Token
+  generates a new JWT 
+#### Confirm_User
+  uses an emial code to create fully usable user account
+#### Create_User
+  creates a semifunction user account and sends the confirmation code
+#### Login
+  logs a user in and return a JWT and refresh token
+#### Reset_Send
+  sends a email to let a user reset a password
+#### Reset_Receive
+  uses a email code to reset usrs password  
+#### Validate_Access_Token
+  varifies the claims of an access token (then does work)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### Get_Access_Token
+this interface requries
+'uid' : the users id
+'refresh' : the users refresh token
+when real users id and unexpired refesh token is recieved the following is send to the calling process
+the header base64 encoded followed by "." followed by the payload base64 encodd a "." and finally the signature hash base64 encoded
+example "base64encocded_json_header.base64encocded_json_payload.base64encocded_json_hash"
+errors
+"499" : token expired
+"500" : server error occured
+"403" : data provided incorrect
 
-### `npm run build`
+##### Confirm_User
+this interface transition a user cocount from the 'Incomplete_User' table to the 'User' table
+'email' : users account email
+'code' : emailed code
+when a legitimate email and its accompanying un expired validation code it provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
+errors
+"500" : server error occured
+"403" : data provided incorrect
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### Create_User
+this interface create an entry in the 'Incomplete_User' table and emails the accompanying varifcation code to the user this interface expects
+'email' : email of the new account
+'password' : password for the new account
+when a novel email an correctly formated password is recieved nothing is return to the calling process
+errors
+"500" : server error occured
+"403" : data provided incorrect
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##### Login
+this interface varifes a user amd requires the following data
+'email' : account's email
+'password' : account's password
+on success tit provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
+errors
+"500" : server error occured
+"403" : data provided incorrect ()()()()()(order error numerically
+"408" : invalid credentails
 
-### `npm run eject`
+##### Reset_Send
+this interface initaites the revocer user sequnce by adding an entry to 'Recover_User' and email the user a recovery code, it requires the following data
+'email' : email of the account to be reset
+the calling process recieves nothing when a succesful request is made
+errors
+"500" : server error occured
+"403" : data provided incorrect
+"429" : max recovery attemps reached
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+##### Reset_Recieve
+this interface recovers a user and changes thier password, to do so it requires the following data
+'email' : eamil fo the accoutn to reset
+'code' : emailed varifaction code
+'password' : new passwird
+on success tit provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
+"500" : server error occured
+"403" : data provided incorrect
+"429" : max recovery attemps for the last code emailed
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+##### Validate_Access_Token
+this interface varifes the claims of a JWT it requires the following data
+'token' : the JWT to be varified
+on success the calling process recieves code "400" to indiacte success
+errors
+"500" : server error occured
+"403" : data provided incorrect
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### SQL DataBase
+this is a explanation of the code in SQDLLSDA>DS.txt and is put here to be referenced in the API section above
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+the "User" table represents a fully created user account it has the following data feilds
+uId : primary index of this table
+uEmail : unique email accociated with account
+uPass : password for the account
+resets : how many times the password reset sequence has been requested for this account
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+the "Incomplete_User" represetn a preliminary stage where a user has created an account but has not used thier email to confirm it, in this stage a user is unable to login until the confirmation.
+uId : primary index of this table
+uEmail : unique email accociated with account
+uPass : password for the account
+varificationCode : the 6 digit code sent to the email accociated with this account
+expiry : the Unix time when the varification code will no longer be elgitimate
 
-### Code Splitting
+the "Recover_User" table stores enteries for users who have forgotten thier password and has requested a recovery email, it has the following imformation
+uEmail : email of the inital account 
+varificationCode : the code that is emailed to a user
+expiry : the Unix time when the varification code will no longer be elgitimate
+attempts : number of times this code has been "guessed"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+the "Refresh_Tokens" table stores the refresh token sent to a user on identity confirmation
+uId : the user who thsi token applies to
+token : the token itself
+secret : the hashing seed used for all JWT tokens generated by this refresh token
+expiry : the Unix time when this refresh token will no longer work
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
