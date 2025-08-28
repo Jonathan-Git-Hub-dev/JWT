@@ -32,8 +32,8 @@ this section details the APIs that are implemented to facilitate this system. Al
   varifies the claims of an access token (then does work)
 
 ##### Login
-This interface varifies a user's identity, and requires the following data:
--'email' : account's email
+This interface varifies a user's identity, and requires the following data:/
+- 'email' : account's email
 'password' : account's password
 on success tit provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
 errors
