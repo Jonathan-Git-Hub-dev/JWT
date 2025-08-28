@@ -19,9 +19,9 @@ this section details the APIs that are implemented to facilitate this system. Al
 
 #### [Get_Access_Token](#Get_Access_Token)
   generates a new JWT 
-#### [Confirm_User](#Confirm_User)
+#### [Confirm_User ](#Confirm_User)
   uses an emial code to create fully usable user account
-#### [Create_User](#Create_User)
+#### [Create_User ](#Create_User)
   creates a semifunction user account and sends the confirmation code
 #### [Login](#Login)
   logs a user in and return a JWT and refresh token
