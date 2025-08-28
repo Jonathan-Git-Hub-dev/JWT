@@ -36,6 +36,8 @@ the following errors codes are also possible
 - 408 : Invalid credentails.
 - 500 : Server error occured.
 
+
+
 ##### Get_Access_Token
 this interface generates a new access token for the user and requires:/
 - uid : The user's ID.
