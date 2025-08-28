@@ -35,7 +35,7 @@ the following errors codes are also possible
 - 403 : data provided incorrect ()()()()()(order error numerically
 - 408 : Invalid credentails.
 - 500 : Server error occured.
-
+<br />
 
 
 ##### Get_Access_Token
@@ -48,6 +48,8 @@ the following errors codes are also possible
 - 403 : Data provided incorrect.
 - 499 : Token expired.
 - 500 : Server error occured.
+<br />
+
 
 ##### Confirm_User
 this interface transition a user cocount from the 'Incomplete_User' table to the 'User' table
@@ -58,6 +60,8 @@ when a legitimate email and its accompanying un expired validation code it provi
 errors
 - 403 : data provided incorrect
 - 500 : server error occured
+<br />
+
 
 ##### Create_User
 this interface create an entry in the 'Incomplete_User' table and emails the accompanying varifcation code to the user this interface expects
@@ -68,6 +72,7 @@ when a novel email an correctly formated password is recieved nothing is return 
 errors
 - 403 : data provided incorrect
 - 500 : server error occured
+<br />
 
 
 ##### Reset_Send
@@ -79,6 +84,8 @@ errors
 - 403 : data provided incorrect
 - 429 : max recovery attemps reached
 - 500 : server error occured
+<br />
+
 
 ##### Reset_Recieve
 this interface recovers a user and changes thier password, to do so it requires the following data
@@ -90,6 +97,7 @@ on success tit provided the calling process recieves an inital base64 encoded ac
 - 403 : data provided incorrect
 - 429 : max recovery attemps for the last code emailed
 - 500 : server error occured
+<br />
 
 
 ##### Validate_Access_Token
@@ -100,7 +108,7 @@ on success the calling process recieves code "400" to indiacte success
 errors
 - 500 : server error occured
 - 403 : data provided incorrect
-
+<br />
 
 
 ### SQL DataBase
