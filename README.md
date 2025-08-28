@@ -52,7 +52,7 @@ the following errors codes are also possible
 
 
 ##### Confirm_User
-this interface transition a user cocount from the 'Incomplete_User' table to the 'User' table
+this interface transition a user cocount from the [Incomplete_User](#Incomplete User) table to the 'User' table
 - email : users account email.
 - code : emailed code.\
 
