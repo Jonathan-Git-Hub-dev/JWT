@@ -4,7 +4,7 @@
 [What is a JWT](#What_is_a_JWT)
 [System breakdown](#System_breakdown)
 [API](#API)
-[SQL](#SQL_DataBase)
+[SQL](#SQL_Database)
 
 
 
