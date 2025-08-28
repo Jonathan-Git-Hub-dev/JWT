@@ -17,7 +17,7 @@ This systems implements JWT for user varificarion. The appliation offers user ac
 ### API
 this section details the APIs that are implemented to facilitate this system. All data that the API end points are php files and consume the data points listed from the posting process. 
 
-#### [Get_Access_Token](##### Get_Access_Token)
+#### [Get_Access_Token](#Get_Access_Token)
   generates a new JWT 
 #### Confirm_User
   uses an emial code to create fully usable user account
