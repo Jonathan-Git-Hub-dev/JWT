@@ -32,9 +32,9 @@ this section details the APIs that are implemented to facilitate this system. Al
   varifies the claims of an access token (then does work)
 
 ##### Login
-This interface varifies a user's identity, and requires the following data:/
-- email : account's email/
-- password : account's password/
+This interface varifies a user's identity, and requires the following data:\
+- email : account's email
+- password : account's password\
 when credentails matching the database are presented the calling process recieves an inital base64-encoded access token followed by this sessions refresh token base64_encoded seperated by a comma.
 the following errors codes are also possible
 - 403 : data provided incorrect ()()()()()(order error numerically
