@@ -17,20 +17,29 @@ This systems implements JWT for user varificarion. The appliation offers user ac
 ### API
 this section details the APIs that are implemented to facilitate this system. All data that the API end points are php files and consume the data points listed from the posting process. 
 
-#### [Get_Access_Token](#Get_Access_Token)
+#### [Login ](#Login)
+#### [Get_Access_Token ](#Get_Access_Token)
   generates a new JWT 
 #### [Confirm_User ](#Confirm_User)
   uses an emial code to create fully usable user account
 #### [Create_User ](#Create_User)
   creates a semifunction user account and sends the confirmation code
-#### [Login](#Login)
-  logs a user in and return a JWT and refresh token
-#### [Reset_Send](#Reset_Send)
+#### [Reset_Send ](#Reset_Send)
   sends a email to let a user reset a password
-#### [Reset_Receive](#Reset_Receive)
+#### [Reset_Receive ](#Reset_Receive)
   uses a email code to reset usrs password  
-#### [Validate_Access_Token](#Validate_Access_Token)
+#### [Validate_Access_Token ](#Validate_Access_Token)
   varifies the claims of an access token (then does work)
+
+##### Login
+This interface varifies a user's identity, and requires the following data:
+-'email' : account's email
+'password' : account's password
+on success tit provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
+errors
+"500" : server error occured
+"403" : data provided incorrect ()()()()()(order error numerically
+"408" : invalid credentails
 
 ##### Get_Access_Token
 this interface requries
@@ -62,16 +71,6 @@ errors
 "500" : server error occured
 "403" : data provided incorrect
 
-
-##### Login
-this interface varifes a user amd requires the following data
-'email' : account's email
-'password' : account's password
-on success tit provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
-errors
-"500" : server error occured
-"403" : data provided incorrect ()()()()()(order error numerically
-"408" : invalid credentails
 
 ##### Reset_Send
 this interface initaites the revocer user sequnce by adding an entry to 'Recover_User' and email the user a recovery code, it requires the following data
