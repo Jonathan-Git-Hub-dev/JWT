@@ -111,7 +111,7 @@ errors
 <br />
 
 
-### SQL DataBase
+### SQL Database
 this is a explanation of the code in SQDLLSDA>DS.txt and is put here to be referenced in the API section above
 
 #### User
