@@ -39,7 +39,8 @@ the following errors codes are also possible
 ##### Get_Access_Token
 this interface generates a new access token for the user and requires:/
 - uid : The user's ID.
-- refresh : The user's refresh token.
+- refresh : The user's refresh token.\
+
 When a real users ID and unexpired refesh token is recieved the calling process recieves an access token./
 the following errors codes are also possible
 - 403 : Data provided incorrect.
@@ -48,9 +49,10 @@ the following errors codes are also possible
 
 ##### Confirm_User
 this interface transition a user cocount from the 'Incomplete_User' table to the 'User' table
-- email : users account email
-- code : emailed code
-when a legitimate email and its accompanying un expired validation code it provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
+- email : users account email.
+- code : emailed code.\
+
+when a legitimate email and its accompanying un expired validation code it provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64.
 errors
 - 403 : data provided incorrect
 - 500 : server error occured
@@ -58,7 +60,8 @@ errors
 ##### Create_User
 this interface create an entry in the 'Incomplete_User' table and emails the accompanying varifcation code to the user this interface expects
 - email : email of the new account
-- password : password for the new account
+- password : password for the new account.\
+
 when a novel email an correctly formated password is recieved nothing is return to the calling process
 errors
 - 403 : data provided incorrect
@@ -67,7 +70,8 @@ errors
 
 ##### Reset_Send
 this interface initaites the revocer user sequnce by adding an entry to 'Recover_User' and email the user a recovery code, it requires the following data
-- email : email of the account to be reset
+- email : email of the account to be reset.\
+
 the calling process recieves nothing when a succesful request is made
 errors
 - 403 : data provided incorrect
@@ -77,7 +81,8 @@ errors
 ##### Reset_Recieve
 this interface recovers a user and changes thier password, to do so it requires the following data
 - email : eamil fo the accoutn to reset
-- code : emailed varifaction code
+- code : emailed varifaction code.\
+
 'password' : new passwird
 on success tit provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
 - 403 : data provided incorrect
@@ -87,7 +92,8 @@ on success tit provided the calling process recieves an inital base64 encoded ac
 
 ##### Validate_Access_Token
 this interface varifes the claims of a JWT it requires the following data
-- token : the JWT to be varified
+- token : the JWT to be varified.\
+
 on success the calling process recieves code "400" to indiacte success
 errors
 - 500 : server error occured
