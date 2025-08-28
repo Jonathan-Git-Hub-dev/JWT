@@ -33,25 +33,23 @@ this section details the APIs that are implemented to facilitate this system. Al
 
 ##### Login
 This interface varifies a user's identity, and requires the following data:/
-- 'email' : account's email
-'password' : account's password
-on success tit provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64
-errors
-"500" : server error occured
-"403" : data provided incorrect ()()()()()(order error numerically
-"408" : invalid credentails
+- email : account's email/
+- password : account's password/
+when credentails matching the database are presented the calling process recieves an inital base64-encoded access token followed by this sessions refresh token base64_encoded seperated by a comma.
+the following errors codes are also possible
+- 403 : data provided incorrect ()()()()()(order error numerically
+- 408 : Invalid credentails.
+- 500 : Server error occured.
 
 ##### Get_Access_Token
-this interface requries
-'uid' : the users id
-'refresh' : the users refresh token
-when real users id and unexpired refesh token is recieved the following is send to the calling process
-the header base64 encoded followed by "." followed by the payload base64 encodd a "." and finally the signature hash base64 encoded
-example "base64encocded_json_header.base64encocded_json_payload.base64encocded_json_hash"
-errors
-"499" : token expired
-"500" : server error occured
-"403" : data provided incorrect
+this interface generates a new access token for the user and requires:/
+- uid : The user's ID.
+- refresh : The user's refresh token.
+When a real users ID and unexpired refesh token is recieved the calling process recieves an access token./
+the following errors codes are also possible
+- 403 : Data provided incorrect.
+- 499 : Token expired.
+- 500 : Server error occured.
 
 ##### Confirm_User
 this interface transition a user cocount from the 'Incomplete_User' table to the 'User' table
