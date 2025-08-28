@@ -1,10 +1,10 @@
 # Implementation of JSON Web Token(JWT) like system
 
 ## sections
-What is a JWT and what i am doing
-System break down
-API
-SQL
+[What is a JWT](#What_is_a_JWT)
+[System breakdown](#System_breakdown)
+[API](#API)
+[SQL](#SQL_DataBase)
 
 
 
@@ -17,13 +17,13 @@ This systems implements JWT for user varificarion. The appliation offers user ac
 ### API
 this section details the APIs that are implemented to facilitate this system. All data that the API end points are php files and consume the data points listed from the posting process. 
 
-#### [Login ](#Login)
-#### [Get_Access_Token ](#Get_Access_Token)
-#### [Confirm_User ](#Confirm_User)
-#### [Create_User ](#Create_User)
-#### [Reset_Send ](#Reset_Send)
-#### [Reset_Receive ](#Reset_Receive)
-#### [Validate_Access_Token ](#Validate_Access_Token)
+[Login ](#Login)
+[Get_Access_Token ](#Get_Access_Token)
+[Confirm_User ](#Confirm_User)
+[Create_User ](#Create_User)
+[Reset_Send ](#Reset_Send)
+[Reset_Receive ](#Reset_Receive)
+[Validate_Access_Token ](#Validate_Access_Token)
 
 ##### Login
 This interface varifies a user's identity, and requires the following data:\
