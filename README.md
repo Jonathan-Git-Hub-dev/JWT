@@ -17,13 +17,13 @@ This systems implements JWT for user varificarion. The appliation offers user ac
 ### API
 this section details the APIs that are implemented to facilitate this system. All data that the API end points are php files and consume the data points listed from the posting process. 
 
-[Login ](#Login)
-[Get_Access_Token ](#Get_Access_Token)
-[Confirm_User ](#Confirm_User)
-[Create_User ](#Create_User)
-[Reset_Send ](#Reset_Send)
-[Reset_Receive ](#Reset_Receive)
-[Validate_Access_Token ](#Validate_Access_Token)
+[Login ](#Login)<br />
+[Get_Access_Token ](#Get_Access_Token)<br />
+[Confirm_User ](#Confirm_User)<br />
+[Create_User ](#Create_User)<br />
+[Reset_Send ](#Reset_Send)<br />
+[Reset_Receive ](#Reset_Receive)<br />
+[Validate_Access_Token ](#Validate_Access_Token)<br />
 
 ##### Login
 This interface varifies a user's identity, and requires the following data:\
