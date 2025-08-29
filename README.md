@@ -18,39 +18,24 @@ This system implements JWT for user verification. The application offers user ac
 This section details the APIs and the data they consume. All endpoints are available in PHP files of the same name. 
 
 #### API sections
-[Login ](#Login)<br />
-[Get_Access_Token ](#Get_Access_Token)<br />
-[Confirm_User ](#Confirm_User)<br />
 [Create_User ](#Create_User)<br />
+[Confirm_User ](#Confirm_User)<br />
+[Login ](#Login)<br />
 [Reset_Send ](#Reset_Send)<br />
 [Reset_Receive ](#Reset_Receive)<br />
+[Get_Access_Token ](#Get_Access_Token)<br />
 [Validate_Access_Token ](#Validate_Access_Token)<br />
 
-##### Login
-This interface verifies a user's identity.
+##### Create_User
+This interface creates an entry in the [Incomplete User](#Incomplete-User)' table and emails a verification code to the user.
 ###### Data
-- email : account's email.
-- password : account's password.
+- email : Email of the new account.
+- password : Password for the new account.
 ###### Returns
-- 403 : Data missing.
-- 408 : Invalid credentials.
+- 400 : Account created and email sent.
+- 403 : Data provided incorrect.
 - 500 : Server error occurred.
-- Base64 encoded access token and Base64 encoded refresh token separated by a comma : Login success.
 <br />
-
-
-##### Get_Access_Token
-This interface generates a new access token.
-###### Data
-- uid : The user's ID.
-- refresh : The user's refresh token.
-###### Returns
-- 403 : Token format incorrect.
-- 499 : Token expired.
-- 500 : Server error occurred.
-- Base64 encoded access token : Refresh token correct
-<br />
-
 
 ##### Confirm_User
 This interface transitions a user's account from the [Incomplete User](#Incomplete-User) table to the [User](#User) table creating a fully instantiated user.
@@ -64,16 +49,18 @@ This interface transitions a user's account from the [Incomplete User](#Incomple
 <br />
 
 
-##### Create_User
-This interface creates an entry in the [Incomplete User](#Incomplete-User)' table and emails a verification code to the user.
+##### Login
+This interface verifies a user's identity.
 ###### Data
-- email : Email of the new account.
-- password : Password for the new account.
+- email : account's email.
+- password : account's password.
 ###### Returns
-- 400 : Account created and email sent.
-- 403 : Data provided incorrect.
+- 403 : Data missing.
+- 408 : Invalid credentials.
 - 500 : Server error occurred.
+- Base64 encoded access token and Base64 encoded refresh token separated by a comma : Login success.
 <br />
+
 
 
 ##### Reset_Send
@@ -99,6 +86,17 @@ This interface changes a user’s password.
 - 429 : Max recovery attempts for the last code emailed.
 - 500 : Server error occurred.
 - Base64 encoded access token and Base64 encoded refresh token separated by a comma : New password saved and user logged in.
+<br />
+##### Get_Access_Token
+This interface generates a new access token.
+###### Data
+- uid : The user's ID.
+- refresh : The user's refresh token.
+###### Returns
+- 403 : Token format incorrect.
+- 499 : Token expired.
+- 500 : Server error occurred.
+- Base64 encoded access token : Refresh token correct
 <br />
 
 
