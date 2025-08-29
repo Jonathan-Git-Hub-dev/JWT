@@ -45,11 +45,10 @@ This interface generates a new access token.
 - uid : The user's ID.
 - refresh : The user's refresh token.
 ###### Returns
-When a real users ID and unexpired refesh token is recieved the calling process recieves an access token./
-the following errors codes are also possible
-- 403 : Data provided incorrect.
+- 403 : Token format incorrect.
 - 499 : Token expired.
 - 500 : Server error occured.
+- Base64 encoded access token : Refresh token correct
 <br />
 
 
@@ -59,10 +58,9 @@ This interface transitions a user's account from the [Incomplete User](#Incomple
 - email : users account email.
 - code : emailed code.\
 ###### Returns
-when a legitimate email and its accompanying un expired validation code it provided the calling process recieves an inital base64 encoded access token followed by a comma and this sessions refresh token encoded in base 64.
-errors
 - 403 : data provided incorrect
 - 500 : server error occured
+- Base64 encoded access token and Base64 encoded refresh token seperated by a comma : Data recieved matches database, account created.
 <br />
 
 
@@ -70,10 +68,9 @@ errors
 This interface creates an entry in the [Incomplete User](#Incomplete-User)' table and emails a varification code to the user.
 ###### Data
 - email : email of the new account
-- password : password for the new account.\
+- password : password for the new account.
 ###### Returns
-when a novel email an correctly formated password is recieved nothing is return to the calling process
-errors
+- 400 : Account created and eamil send
 - 403 : data provided incorrect
 - 500 : server error occured
 <br />
@@ -84,11 +81,10 @@ This interface initaites the revocer user sequnce by adding an entry to [Recover
 ###### Data
 - email : email of the account to be reset.
 ###### Returns
-the calling process recieves nothing when a succesful request is made
-errors
-- 403 : data provided incorrect
-- 429 : max recovery attemps reached
-- 500 : server error occured
+- 400 : Email sent.
+- 403 : data provided incorrect.
+- 429 : max recovery attemps reached.
+- 500 : server error occured.
 <br />
 
 
@@ -103,23 +99,23 @@ on success tit provided the calling process recieves an inital base64 encoded ac
 - 403 : data provided incorrect
 - 429 : max recovery attemps for the last code emailed
 - 500 : server error occured
+- Base64 encoded access token and Base64 encoded refresh token seperated by a comma : New password saved and user loggedin
 <br />
 
 
 ##### Validate_Access_Token
-this interface varifes the claims of a JWT it requires the following data
+This interface varifes the claims of a JWT it requires the following data
 ###### Data
 - token : the JWT to be varified.
 ###### Returns
-on success the calling process recieves code "400" to indiacte success
-errors
-- 500 : server error occured
-- 403 : data provided incorrect
+- 400 : JWT correct (claims inside JWT match singnature, so claim of user identiy valid).
+- 500 : server error occured.
+- 403 : data provided incorrect.
 <br />
 
 
 ### SQL Database
-this is a explanation of the code in SQDLLSDA>DS.txt and is put here to be referenced in the API section above
+This sections details the database(found her QDLLSDA>DS.txt}}}}}} and is put here to be referenced in the API section above.
 
 #### User
 the "User" table represents a fully created user account it has the following data feilds
