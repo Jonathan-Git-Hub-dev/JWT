@@ -87,7 +87,7 @@ errors
 <br />
 
 
-##### Reset_Recieve
+##### Reset_Receive
 this interface recovers a user and changes thier password, to do so it requires the following data
 - email : eamil fo the accoutn to reset
 - code : emailed varifaction code.\
