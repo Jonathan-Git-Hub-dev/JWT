@@ -115,7 +115,7 @@ This interface varifes the claims of a JWT it requires the following data
 
 
 ### SQL Database
-This sections details the database [a link](https://github.com/Jonathan-Git-Hub-dev/JWT/edit/main/sql.txt) and is put here to be referenced in the API section above.
+This sections details the database [(Code found here)](https://github.com/Jonathan-Git-Hub-dev/JWT/edit/main/sql.txt) and is put here to be referenced in the API section above.
 
 #### User
 the "User" table represents a fully created user account it has the following data feilds
