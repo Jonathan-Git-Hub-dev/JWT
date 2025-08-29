@@ -32,11 +32,10 @@ This interface varifies a user's identity.
 - email : account's email
 - password : account's password
 ###### Returns
-when credentails matching the database are presented the calling process recieves an inital base64-encoded access token followed by this session's refresh token base64_encoded seperated by a comma.<br />
-The following errors codes are also possible
 - 403 : Data missing.
 - 408 : Invalid credentails.
 - 500 : Server error occured.
+- Base64 encoded access token and Base64 encoded refresh token seperated by a comma : Login success.
 <br />
 
 
