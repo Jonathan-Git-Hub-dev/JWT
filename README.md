@@ -30,9 +30,9 @@ This section details the APIs and the data they consume that are implemented to 
 This interface varifies a user's identity.
 ###### Data
 - email : account's email
-- password : account's password\
+- password : account's password
 ###### Returns
-when credentails matching the database are presented the calling process recieves an inital base64-encoded access token followed by this sessions refresh token base64_encoded seperated by a comma.
+when credentails matching the database are presented the calling process recieves an inital base64-encoded access token followed by this session's refresh token base64_encoded seperated by a comma.<br />
 the following errors codes are also possible
 - 403 : data provided incorrect ()()()()()(order error numerically
 - 408 : Invalid credentails.
