@@ -27,7 +27,7 @@ This section details the APIs and the data they consume. All endpoints are avail
 [Validate_Access_Token ](#Validate_Access_Token)<br />
 
 ##### Create_User
-This interface creates an entry in the [Incomplete User](#Incomplete-User)' table and emails a verification code to the user.
+This interface creates an entry in the [Incomplete User](#Incomplete-User) table and emails a verification code to the user.
 ###### Data
 - email : Email of the new account.
 - password : Password for the new account.
@@ -87,6 +87,7 @@ This interface changes a user’s password.
 - 500 : Server error occurred.
 - Base64 encoded access token and Base64 encoded refresh token separated by a comma : New password saved and user logged in.
 <br />
+
 ##### Get_Access_Token
 This interface generates a new access token.
 ###### Data
