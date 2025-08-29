@@ -15,8 +15,9 @@ the documentation for JWT can be found here [JWT_Documentation](https://www.jwt.
 This systems implements JWT for user varificarion. The appliation offers user account create with email rerificaion, user login and account reseting through email. when a user has provided the correct credentials and been verfied (login, successful email varification of a new account and a successful emial password reset) the user recieves a JWT and a refresh token. The systems operates heirachyically JWT Access token could potentially sent over the internet hundreds of times to access recourses and so are only given a short lifespan (editable in C:\xampp\htdocs\JWT\src\token_configuration.json). Refresh tokens are more pwoerful as they can be used to create JWTs but are used less frequently to mimise risk. the users actual credentials are the most import, being able to genreate an unlimited numbre of refresh tokens, these credentials are only exposed a single time at the intial varifaction fro the session.
 
 ### API
-this section details the APIs that are implemented to facilitate this system. All data that the API end points are php files and consume the data points listed from the posting process. 
+This section details the APIs and the data they consume that are implemented to facilitate this system. All endpoints are avialible in PHP files of the same name. 
 
+#### API sections
 [Login ](#Login)<br />
 [Get_Access_Token ](#Get_Access_Token)<br />
 [Confirm_User ](#Confirm_User)<br />
