@@ -1,5 +1,9 @@
+/* old version has moving labels*/
+
+
 .input_frame{
     position: relative;
+    margin: 10px;
 }
 
 .input_box{
@@ -16,23 +20,35 @@
     pointer-events: none;
     animation-duration: 0.8s;
     animation-fill-mode: forwards;/*stops animation at final frame after completion*/
-}
+} 
 
 @keyframes hovering_label {
     100%
     {
-        opacity: 0%;
+        top: -36px;
+        left: 10px;
+        border: solid 2px black;
+        border-radius: 3px;
+        background-color: white;
+        padding: 1px;
+
     }
 }
 
 @keyframes move_label_back {
     0%
     {
-        opacity: 0%;
+        top: -36px;
+        left: 10px;
+        border: solid 2px black;
+        border-radius: 3px;
+        background-color: white;
+        padding: 1px;
     }
     100%
     {
-        opacity: 100%;
+        top: -14px;
+        left: 4px;
     }
 }
 

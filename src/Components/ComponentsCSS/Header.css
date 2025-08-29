@@ -1,0 +1,52 @@
+.header_frame
+{
+    margin:0;
+    padding: 0;
+    gap: 0;
+
+    min-width: 100svw;
+    max-width: 100svw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+}
+
+.header_banner
+{
+    min-width: 100svw;
+    max-width: 100svw;
+
+    background-color: cadetblue;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header_banner_content
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header_title
+{
+    margin-left: 10px;
+}
+
+.header_error
+{
+    min-width: 100svw;
+    max-width: 100svw;
+
+    color: red;
+
+    display: flex;
+    justify-content: center;
+}
+
+.header_button
+{
+    margin-right: 10px;
+
+}

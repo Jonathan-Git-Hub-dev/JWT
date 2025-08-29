@@ -1,0 +1,9 @@
+{
+    "access_token_life_time" : 15,
+    "access_token_life_time_minus_2" : 13,
+    "refresh_token_life_time" : 1200,
+    "varification_code_life_time" : 10,
+    "recovery_code_life_time" : 10,
+    "max_recovery_attemps" : 10,
+    "max_guesses_per_code" : 3
+}

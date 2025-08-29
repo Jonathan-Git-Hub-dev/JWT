@@ -1,0 +1,28 @@
+.fra{
+    background-color: whitesmoke;
+    
+
+    display: none;
+    align-items: center;
+
+    border: solid 1px black;
+
+
+}
+
+.mov{
+    position: relative;
+
+    animation-name: load_animation;
+    animation-duration: 4s; 
+    animation-iteration-count: infinite;
+    
+    border-radius: 50%;
+    
+}
+
+@keyframes load_animation {
+  0%   {background-color:cadetblue; left: 5px}
+  50%  {background-color: blue; left: calc((92%) - 5px)}
+  100% {background-color:cadetblue; left: 5px}
+}

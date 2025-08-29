@@ -1,0 +1,43 @@
+.recovery_page_frame
+{
+    min-width: 100svw;
+    max-width: 100svw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recovery_page_hold_buttons
+{
+    min-width: 100svw;
+    max-width: 100svw;
+}
+.recovery_page_button_return
+{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.recovery_page_padding
+{
+    min-height: 5px;
+    max-height: 5px;
+}
+.recovery_page_error
+{
+    color: red;
+}
+.recovery_page_modal{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recovery_page_modal_hold_buttons
+{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}

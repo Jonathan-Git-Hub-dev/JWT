@@ -1,0 +1,23 @@
+when ever the mail function is called my email is hard codded so remove that and make it programtic
+
+THIS IS DIFFERENT TO THE ABOVE MESSAGE REMOVE MY CREDS FORM EMAIL
+
+make sure errors get reset
+when checking access token make sure it has all the parts (b ready to hadle jumk and manipulated data)
+
+
+Things to do
+accessibility
+$ animations while emails are being sent
+$ animete floating labels
+$ sever and client side validation
+$ get all php errors
+
+
+put hash algo and times to live into json
+
+
+Things im not sure about
+what should happen if the back arrow is pressed (should it log you out) (might also stuff up header) 
+
+

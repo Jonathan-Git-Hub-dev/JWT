@@ -1,0 +1,11 @@
+.user_page_frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user_page_success{
+    color: green;
+}
+.user_page_error{
+    color: red;
+}

@@ -1,23 +1,11 @@
-import {useNavigate, useParams } from "react-router";
-
-
-
-
-
+import './PagesCSS/LandingPage.css'
 
 export default function LandingPage()
 {
-    let navigate = useNavigate();
-
-    function f1()
-    {
-        //console.log("button press")
-        navigate("./login");
-    }
-
     return (
-        <div>
-            <button onClick={f1}>login</button>
+        <div className="landing_page_frame">
+            <h2>Landing page</h2>
+            <p>Promotional content can be placed here.</p>
         </div>
     );
-}
+} 

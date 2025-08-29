@@ -3,29 +3,57 @@ import './ComponentsCSS/Input.css'
 
 export default function Input(props)
 {
-    let labelRef = useRef(null);
-    function f1()
+    let label_ref = useRef(null);
+    let validation_output = useRef(null);
+
+    function Return_Label()
     {
-        //console.log("blur")
-        //checking if there is input
-        if(props.passedRef.current.value == "")
+        if(props.passedRef.current.value === "")
         {
-            labelRef.current.style.top = "-14px";
-            labelRef.current.style.fontSize = "16px";
+            label_ref.current.style.animationName='move_label_back';
+            
+            //when input blank no need to supply and error message
+            if(props.validate !== undefined)
+            {
+                validation_output.current.innerHTML = "";
+            }
         }
     }
-    function f2()
+    function Move_Label()
     {
-        console.log("hll")
-        labelRef.current.style.top = "-18px";
-        labelRef.current.style.fontSize = "10px";
-        //labelRef.current.style.left = "9px";
+        label_ref.current.style.animationName='hovering_label';
+    }
+    function Do_Validate(e)
+    {
+        //if user has given a validator function
+        if(props.validate !== undefined)
+        {
+            //get validation message and display it
+            let message = props.validate(e.target.value);
+            validation_output.current.innerHTML = message;
+        }
     }
 
     return(
-        <div style={{position: "relative", backgroundColor: "red", margin: "10px"}}>
-            <input onClick={f2} onBlur={f1} ref={props.passedRef} type={props.password!== undefined? "password" : "text"}></input>
-            <p className="ex" ref={labelRef}>{props.label}</p>
+        <div className="input_frame">
+            <div>
+                <input
+                    className="input_box"
+                    onChange={Do_Validate}
+                    onFocus={Move_Label}
+                    onBlur={Return_Label}
+                    ref={props.passedRef} 
+                    aria-label={props.label}
+                    type={props.password !== undefined ? "password" : "text"}
+                />
+                {
+                    props.validate == undefined 
+                    ? <></>
+                    : <div className="error_feild" ref={validation_output}/>
+                }
+            </div>
+            <p className="ex" ref={label_ref}>{props.label}</p>
         </div>
     );
 }
+//<div style={{position: "relative", backgroundColor: "red", margin: "10px"}}>

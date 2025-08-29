@@ -1,0 +1,11 @@
+.landing_page_frame
+{
+    min-height: 90svh;
+    max-height: 90svh;
+    min-width: 100svw;
+    max-width: 100svw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

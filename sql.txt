@@ -1,23 +1,47 @@
 create database JWT;
 
 use JWT;
-DROP TABLE Users;
-CREATE TABLE Users (
+DROP TABLE User;
+CREATE TABLE User (
     uId int NOT NULL AUTO_INCREMENT UNIQUE,
     uEmail varchar(100) NOT NULL UNIQUE,
     uPass varchar(30) COLLATE latin1_general_cs NOT NULL,
-    uProfile varchar(35) COLLATE latin1_general_cs NOT NULL,
+    resets INT DEFAULT 0,
 
-    PRIMARY KEY (uId)
+    PRIMARY KEY (uId) 
 );
 
-use JWT;
-DROP TABLE Users;
-CREATE TABLE incompleteUser (
+
+DROP TABLE Incomplete_User;
+CREATE TABLE Incomplete_User (
     uId int NOT NULL AUTO_INCREMENT UNIQUE,
     uEmail varchar(100) NOT NULL UNIQUE,
     uPass varchar(30) COLLATE latin1_general_cs NOT NULL,
     varificationCode varchar(6) NOT NULL,
+    expiry BIGINT NOT NULL, 
     
     PRIMARY KEY (uId)
 );
+
+DROP TABLE Recover_User;
+CREATE TABLE Recover_User (
+    uEmail varchar(100) NOT NULL UNIQUE,
+    varificationCode varchar(6) NOT NULL,
+    expiry BIGINT NOT NULL,
+    attempts INT DEFAULT 0,
+    
+    PRIMARY KEY (uEmail)
+);
+
+
+DROP TABLE Refresh_Tokens;
+CREATE TABLE Refresh_Tokens (
+    uId int NOT NULL UNIQUE,
+    token BINARY(128) NOT NULL UNIQUE,
+    secret BINARY(64) NOT NULL UNIQUE,
+    expiry BIGINT NOT NULL,
+    
+    PRIMARY KEY (uId)
+);
+
+
