@@ -129,7 +129,7 @@ uPass : password for the account
 varificationCode : the 6 digit code sent to the email accociated with this account
 expiry : the Unix time when the varification code will no longer be elgitimate
 
-#### Recovery User
+#### Recover User
 the "Recover_User" table stores enteries for users who have forgotten thier password and has requested a recovery email, it has the following imformation
 uEmail : email of the inital account 
 varificationCode : the code that is emailed to a user
