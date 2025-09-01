@@ -17,7 +17,7 @@ $row= $result->fetch_assoc();
 $recovery_trys = $row['resets'] + 1;
 if($recovery_trys >= $token_info->max_recovery_attemps)
 {
-    Finish("429");//too many tries code
+    Finish('"Status":"429"}');//too many tries code
 }
 
 //new code
@@ -44,5 +44,5 @@ $result = Try_Query($sql, "is", $trys, $email);
 
 
 Send_Email($email, "Your recovery code is: $email_confirmation_code");
-Finish("400");
+Finish($success_code_full);
 

@@ -9,7 +9,6 @@ import "./ComponentsCSS/Header.css"
 const minutes = 60;
 export default function Header(props)
 {
-  const [error, setError] = useState("");
   const [loggin, setLoggin] = useContext(loggedinContext);
   let navigate = useNavigate();
 
@@ -45,17 +44,14 @@ export default function Header(props)
       data: {refresh : sessionStorage.getItem("refreshToken"), uid: sessionStorage.getItem("user_id")}
     })
     .done(function(data){
-      if(data === server_error || data === data_error)
-      {
-        setError("Server or Data error");
-      }
-      else if(data === "499")//refrsh token expired
+      const response = JSON.parse(data);
+      if(response.Status === server_error || response.Status === data_error || response.Status === "499")
       {
         Log_Out();
       }
-      else
+      else//response 400
       {
-        sessionStorage.setItem("accessToken",data);
+        sessionStorage.setItem("accessToken", response.Data);
       }
     }).fail(function(data){
                 console.log("error ajax" + data);
@@ -88,14 +84,17 @@ export default function Header(props)
             : <button className="header_button" onClick={Move_To_Login_Page}>login Page</button>
           }
         </div>
-        <div  
-          className="header_error"
-          style={/*only consume space if error exists*/error=="" ? {minHeight: '0px',maxHeight: '0px'}:{}}
-        >
-          {error}
-        </div>
       </div>
       {props.children}
     </div>
   );
-}
+} 
+/*
+old error handling code
+<div  
+          className="header_error"
+          style={only consume space if error exists error=="" ? {minHeight: '0px',maxHeight: '0px'}:{}}
+        >
+          {error}
+        </div>
+*/

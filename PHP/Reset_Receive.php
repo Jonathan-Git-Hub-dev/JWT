@@ -30,7 +30,7 @@ $result = Try_Query($sql, "is", $attempts, $email);
 $config = Get_Configuration();
 if($row['attempts'] >= $config->max_guesses_per_code)
 {
-    Finish("429");//too many tries code
+    Finish('{"Status":"429"}');//too many tries code
 }
 
 //check code and expiry

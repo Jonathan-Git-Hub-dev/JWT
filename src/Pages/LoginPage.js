@@ -41,18 +41,19 @@ export default function LoginPage()
             data: {email: email.current.value, password: pass.current.value}
         })
         .done(function(data){
-            console.log(data)
-            if(data == server_error || data == data_error)
+            //console.log(data)
+            const response = JSON.parse(data);
+            if(response.Status == server_error || response.Status == data_error)
             {
                 setError("Server or data error");
-            }
-            else if(data == "408")
+            } 
+            else if(response.Status == "408")
             {
                 setError("Invalid credentials");
             }
             else
             {
-                Handle_Tokens(data)
+                Handle_Tokens(response.Data)
 
                 setLoggin(true);
                 navigate('../user');

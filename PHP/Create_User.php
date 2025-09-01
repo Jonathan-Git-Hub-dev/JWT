@@ -45,4 +45,4 @@ else
 }
 
 Send_Email($email, "your varification code is $emailed_confirmation_code");
-Finish("400");
+Finish($success_code_full);

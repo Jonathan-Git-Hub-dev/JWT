@@ -33,8 +33,9 @@ export default function UserPage()
         data: {token : sessionStorage.getItem("accessToken")}
     })
     .done(function(data){
+        const response = JSON.parse(data);
         //console.log("this is the result of initial: " + data)
-        if(data != success_code)
+        if(response.Status != success_code)
         {
             Log_Out();
         }
@@ -52,7 +53,8 @@ export default function UserPage()
             data: {token : sessionStorage.getItem("accessToken")}
         })
         .done(function(data){
-            if(data == success_code)
+            const response = JSON.parse(data);
+            if(response.Status == success_code)
             {
                 setError("");
                 setSuccess("Validated");

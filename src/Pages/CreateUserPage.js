@@ -47,14 +47,15 @@ export default function CreateUserPage()
         })
         .done(function(data){
             //console.log(data)
-            if(data == server_error|| data == data_error)
+            const response = JSON.parse(data);
+            if(response.Status == server_error|| response.Status == data_error)
             {
                 setErrorModal("Server or Data error");
             }
             else
             {
-                console.log(data)
-                Handle_Tokens(data);
+                //console.log(data)
+                Handle_Tokens(response.Data);
                 setLoggin(true);
                 navigate('../user');
                 //console.log(body)
@@ -87,9 +88,10 @@ export default function CreateUserPage()
                 data: {email: email_input.current.value, password: password_input.current.value}
             })
             .done(function(data){
-                console.log("data: " + data);
+                //console.log("data: " + data);
+                const response = JSON.parse(data);
                 Turn_Off_Load_Animation(loading_ref);
-                if(data == server_error || data == data_error)
+                if(response.Status == server_error || response.Status == data_error)
                 {
                     setError("Server or data error")
                     //modalOff(childRef);

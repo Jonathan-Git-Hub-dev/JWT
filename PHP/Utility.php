@@ -6,8 +6,11 @@ require "vendor/autoload.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$error_code_standard = "500";
-$error_code_bad_data = "403";
+$error_code_standard = '{"Status":"500"}';
+$error_code_bad_data = '{"Status":"403"}';
+$success_code_full = '{"Status":"400"}';//not encapsulated because data might also be sent
+$success_code = '"Status":"400"';//not encapsulated because data will also be sent
+
 
 //sql connections
 $server_name = "localhost";

@@ -6,5 +6,5 @@ $access_token = Declared($_POST["token"]);
 
 Validate_Access_Token($access_token);
 
-finish("400");
+finish($success_code_full);
 

@@ -37,22 +37,23 @@ export default function RecoveryPage()
     {
         $.ajax({
             method: "post",
-            url: Url + "Reset_Receive.php",
+            url: Url + "Reset_Receive.php", 
             data: {email: email_input.current.value, password: password_input.current.value, code: code_input.current.value}
         })
         .done(function(data){
-                    console.log(data)
-                    if(data == server_error || data == data_error)
+                const response = JSON.parse(data);    
+                //console.log(data)
+                if(response.Status == server_error || response.Status == data_error)
                 {
                     setErrorModal("Server or data error");
                 }
-                else if(data == "429")
+                else if(response.Status == "429")
                 {
                     setErrorModal("Too many attemps contact admin");
                 }
                 else
                 {
-                    Handle_Tokens(data);
+                    Handle_Tokens(response.Data);
                     setLoggin(true);
                     navigate('../user');
                     //console.log(body)
@@ -80,13 +81,14 @@ export default function RecoveryPage()
             data: {email: email_input.current.value}
         })
         .done(function(data){
+            const response = JSON.parse(data);
             Turn_Off_Load_Animation(loading_ref);
-            if(data == server_error || data == data_error)
+            if(response.Status == server_error || response.Status == data_error)
             {
                 setError("Server or data error");
                 modalOff(childRef);
             }
-            else if(data == "429")
+            else if(response.Status == "429")
             {
                 setError("Too many attemps contact admin");
                 //modalOff(childRef);

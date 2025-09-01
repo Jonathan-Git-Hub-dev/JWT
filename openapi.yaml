@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: JWT implementaion
+  description: |
+    This API implements a minimal verson of JSON Web Tokens
+    some other sutff hete
+  version: 1.0.1
+  contact:
+    name: Jonathan P
+paths: 
+  /Create_User:
+    post:
+      summary: Starts the Create User sequence
+      description: |
+        This Interface Creates an entry in a preliminary table to the user table.
+        It then sends the vafication code to the email provided.
+      responses:
+  /Confirm_User:
+    post:
+      summary: Validates user email with varification code.
+      description: Creates entry in user table when a valid email and vafication code pair are provided.
+      responses:
+  /Login:
+    post:
+      summary: Checks provided credentials.
+      responses:
+  /Reset_Send:
+    post:
+      summary: Sends email password reset code out.
+      responses:
+  /Reset_Receive:
+    post:
+      summary: Resets user password.
+      description: Alters password feild of user table when valid email and reset_code pair recieved.
+      responses:
+  /Get_Access_Token:
+    post:
+      summary: Generates new access token.
+      responses:
+  /Validate_Access_Token:
+    post:
+      summary: Varifies claims make by access token.
+      responses:

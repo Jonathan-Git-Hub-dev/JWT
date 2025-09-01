@@ -24,7 +24,7 @@ $password = $row["uPass"];
 if(!Validate_Password($password))
 {
     Finish($error_code_bad_data);
-}
+} 
 
 //create entery in the real user table and remove enrty from transitional table
 $sql = "INSERT INTO User (uEmail, uPass) VALUES (?, ?)";
