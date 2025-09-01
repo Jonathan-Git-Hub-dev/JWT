@@ -1,3 +1,5 @@
+# I concede that the response types may be incorrect
+
 openapi: 3.1.0
 info:
   title: JWT implementaion
@@ -10,34 +12,197 @@ info:
 paths: 
   /Create_User:
     post:
-      summary: Starts the Create User sequence
+      summary: Starts the Create User sequence.
       description: |
         This Interface Creates an entry in a preliminary table to the user table.
         It then sends the vafication code to the email provided.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 10
+            maxLength: 30
       responses:
+        "400":
+          description: Success, User addes to table.
+        "403":
+          description: Failure, Data recieved missing or in incorect format.
+        "500":
+          description: Failure, Server error.
   /Confirm_User:
     post:
       summary: Validates user email with varification code.
       description: Creates entry in user table when a valid email and vafication code pair are provided.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          description: emailed varification code.
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 100000
+            maximum: 999999
       responses:
+        "400":
+          description: Success, User addes to table.
+          application/json:
+              schema:
+                type: object
+                properties:
+                    Data:
+                    type: string
+                    description: An access token followed by a refresh token seperated by a comma
+        "403":
+          description: Failure, Data recieved missing or in incorect format.
+        "500":
+          description: Failure, Server error.
   /Login:
     post:
       summary: Checks provided credentials.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 10
+            maxLength: 30
       responses:
+        "400":
+          description: Success, User addes to table.
+          application/json:
+              schema:
+                type: object
+                properties:
+                  Data:
+                    type: string
+                    description: An access token followed by a refresh token seperated by a comma
+        "403":
+          description: Failure, Data recieved missing or in incorect format.
+        "408":
+          description: Failure, Credentials provied dont exist.
+        "500":
+          description: Failure, Server error.
   /Reset_Send:
     post:
       summary: Sends email password reset code out.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
+        "400":
+          description: Success, User addes to table.
+        "403":
+          description: Failure, Data recieved missing or in incorect format.
+        "429":
+          description: Failure, Operation tried too many times.
+        "500":
+          description: Failure, Server error.
   /Reset_Receive:
     post:
       summary: Resets user password.
       description: Alters password feild of user table when valid email and reset_code pair recieved.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 10
+            maxLength: 30
+        - name: code
+          description: emailed varification code.
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 100000
+            maximum: 999999
       responses:
+        "400":
+          description: Success, User addes to table.
+          application/json:
+              schema:
+                type: object
+                properties:
+                  Data:
+                    type: string
+                    description: An access token followed by a refresh token seperated by a comma
+        "403":
+          description: Failure, Data recieved missing or in incorect format.
+        "429":
+          description: Failure, Operation tried too many times.
+        "500":
+          description: Failure, Server error.
   /Get_Access_Token:
     post:
       summary: Generates new access token.
+      parameters:
+        - name: uid
+          description: user's unique identifier.
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: refresh
+          description: user's session refresh token.
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
+        "400":
+          description: Success, User addes to table.
+          application/json:
+              schema:
+                type: object
+                properties:
+                    Data:
+                    type: string
+                    description:  Access token
+        "403":
+          description: Failure, Data recieved missing or in incorect format.
+        "499":
+          description: Failure, Refresh token expired.
+        "500":
+          description: Failure, Server error.
   /Validate_Access_Token:
     post:
-      summary: Varifies claims make by access token.
+      summary: Varifies claims made by an access token.
+      parameters:
+        - name: token
+          description: user's access token.
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
+        "400":
+          description: Success, User addes to table.
+        "403":
+          description: Failure, Data recieved missing or in incorect format.
