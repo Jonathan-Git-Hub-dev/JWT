@@ -1,11 +1,8 @@
-# I concede that the response types may be incorrect
 
-openapi: 3.1.0
+openapi: 3.0.1
 info:
-  title: JWT implementaion
-  description: |
-    This API implements a minimal verson of JSON Web Tokens
-    some other sutff hete
+  title: JWT implementation
+  description: This API implements a minimal version of JSON Web Tokens (JWT)
   version: 1.0.1
   contact:
     name: Jonathan P
@@ -15,7 +12,7 @@ paths:
       summary: Starts the Create User sequence.
       description: |
         This Interface Creates an entry in a preliminary table to the user table.
-        It then sends the vafication code to the email provided.
+        It then sends the verification code to the email provided.
       parameters:
         - name: email
           in: query
@@ -31,15 +28,15 @@ paths:
             maxLength: 30
       responses:
         "400":
-          description: Success, User addes to table.
+          description: Success, User added to table.
         "403":
-          description: Failure, Data recieved missing or in incorect format.
+          description: Failure, Data received missing or in incorrect format.
         "500":
           description: Failure, Server error.
   /Confirm_User:
     post:
-      summary: Validates user email with varification code.
-      description: Creates entry in user table when a valid email and vafication code pair are provided.
+      summary: Validates user email with verification code.
+      description: Creates entry in user table when a valid email and verification code pair are provided.
       parameters:
         - name: email
           in: query
@@ -47,7 +44,7 @@ paths:
           schema:
             type: string
         - name: code
-          description: emailed varification code.
+          description: emailed verification code.
           in: query
           required: true
           schema:
@@ -56,16 +53,17 @@ paths:
             maximum: 999999
       responses:
         "400":
-          description: Success, User addes to table.
-          application/json:
-              schema:
-                type: object
-                properties:
+          description: Success, User added to table.
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
                     Data:
-                    type: string
-                    description: An access token followed by a refresh token seperated by a comma
+                      type: string
+                      description: An access token followed by a refresh token separated by a comma
         "403":
-          description: Failure, Data recieved missing or in incorect format.
+          description: Failure, Data received missing or in incorrect format.
         "500":
           description: Failure, Server error.
   /Login:
@@ -86,18 +84,19 @@ paths:
             maxLength: 30
       responses:
         "400":
-          description: Success, User addes to table.
-          application/json:
-              schema:
-                type: object
-                properties:
-                  Data:
-                    type: string
-                    description: An access token followed by a refresh token seperated by a comma
+          description: Success, able to log in.
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    Data:
+                      type: string
+                      description: An access token followed by a refresh token separated by a comma
         "403":
-          description: Failure, Data recieved missing or in incorect format.
+          description: Failure, Data received missing or in incorrect format.
         "408":
-          description: Failure, Credentials provied dont exist.
+          description: Failure, Credentials provided don’t exist.
         "500":
           description: Failure, Server error.
   /Reset_Send:
@@ -111,9 +110,9 @@ paths:
             type: string
       responses:
         "400":
-          description: Success, User addes to table.
+          description: Email sent.
         "403":
-          description: Failure, Data recieved missing or in incorect format.
+          description: Failure, Data received missing or in incorrect format.
         "429":
           description: Failure, Operation tried too many times.
         "500":
@@ -121,7 +120,7 @@ paths:
   /Reset_Receive:
     post:
       summary: Resets user password.
-      description: Alters password feild of user table when valid email and reset_code pair recieved.
+      description: Alters password field of user table when valid email and reset_code pair received.
       parameters:
         - name: email
           in: query
@@ -136,7 +135,7 @@ paths:
             minLength: 10
             maxLength: 30
         - name: code
-          description: emailed varification code.
+          description: emailed verification code.
           in: query
           required: true
           schema:
@@ -145,16 +144,17 @@ paths:
             maximum: 999999
       responses:
         "400":
-          description: Success, User addes to table.
-          application/json:
-              schema:
-                type: object
-                properties:
-                  Data:
-                    type: string
-                    description: An access token followed by a refresh token seperated by a comma
+          description: Success, password updated.
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    Data:
+                      type: string
+                      description: An access token followed by a refresh token separated by a comma
         "403":
-          description: Failure, Data recieved missing or in incorect format.
+          description: Failure, Data received missing or in incorrect format.
         "429":
           description: Failure, Operation tried too many times.
         "500":
@@ -177,23 +177,24 @@ paths:
             type: string
       responses:
         "400":
-          description: Success, User addes to table.
-          application/json:
-              schema:
-                type: object
-                properties:
+          description: Success, new token created.
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
                     Data:
-                    type: string
-                    description:  Access token
+                      type: string
+                      description:  Access token
         "403":
-          description: Failure, Data recieved missing or in incorect format.
+          description: Failure, Data received missing or in incorrect format.
         "499":
           description: Failure, Refresh token expired.
         "500":
           description: Failure, Server error.
   /Validate_Access_Token:
     post:
-      summary: Varifies claims made by an access token.
+      summary: Verifies claims made by an access token.
       parameters:
         - name: token
           description: user's access token.
@@ -203,6 +204,7 @@ paths:
             type: string
       responses:
         "400":
-          description: Success, User addes to table.
+          description: Success, claims made in token correct.
         "403":
-          description: Failure, Data recieved missing or in incorect format.
+          description: Failure, Data received missing or in incorrect format.
+
