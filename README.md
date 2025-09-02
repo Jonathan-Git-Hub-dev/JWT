@@ -59,10 +59,11 @@ $config = [<br />
 
 Finally, the application can be run using the command 
 -	npm run dev
+<br />
 
 
 ### API
-[API documentation in OpenAPI format can be found here]( https://jonathan-git-hub-dev.github.io/JWT/API/index.html)
+[API documentation in OpenAPI format can be found here](https://jonathan-git-hub-dev.github.io/JWT/API/index.html)
 
 
 
