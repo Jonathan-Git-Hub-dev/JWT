@@ -59,7 +59,7 @@ $config = [<br />
 
 Finally, the application can be run using the command: 
 
-- npm run dev<br />
+-	npm install jquery- npm run dev<br />
 
 
 ### API
