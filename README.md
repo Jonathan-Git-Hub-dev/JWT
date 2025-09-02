@@ -36,7 +36,7 @@ Download React-Router-Dom and jQuery to the downloaded repo, this can be done us
 -	npm install react-router-dom
 -	npm install jquery
 <br /><br />
-set up the backend:
+##### set up the backend:
 local host a PHP server on your machine (I am using Xampp, in which PHP scripts have to be moved into the htdocs file to be run) change the Url variable found in constants.js to the path to your PHP server. <br />
 Run an SQL database (this can also be done using Xampp). Run the SQL commands found in sql.txt to initialize the relevant tables needed for this application.<br />
 Download PHP mailer to handle emailing verification codes.<br />
@@ -58,8 +58,7 @@ $config = [<br />
 ];<br /><br />
 
 Finally, the application can be run using the command: 
--	npm run dev
-<br />
+-	npm run dev<br />
 
 
 ### API
