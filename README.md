@@ -58,7 +58,8 @@ $config = [<br />
 ];<br /><br />
 
 Finally, the application can be run using the command: 
--	npm run dev<br />
+
+- npm run dev<br />
 
 
 ### API
