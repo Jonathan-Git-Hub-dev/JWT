@@ -57,7 +57,7 @@ $config = [<br />
     ]<br />
 ];<br /><br />
 
-Finally, the application can be run using the command 
+Finally, the application can be run using the command: 
 -	npm run dev
 <br />
 
@@ -77,7 +77,7 @@ the "User" table represents a fully created user account.
 - uId : Primary index of this table.
 - uEmail : Unique email associated with account.
 - uPass : Password for the account in hashed format.
--salt : Added when hashing password for security reasons. 
+- salt : Added when hashing password for security reasons. 
 - resets : How many times the password reset sequence has been requested for this account.
 
 #### Incomplete User
@@ -86,7 +86,7 @@ the "Incomplete_User" represents a preliminary stage where a user has created an
 - uId : Primary index of this table.
 - uEmail : Unique email associated with account.
 - uPass : Password for the account in hashed format.
--salt : Added when hashing password for security reasons. 
+- salt : Added when hashing password for security reasons. 
 - varificationCode : The 6 digit code sent to the email associated with this account.t
 - expiry : The Unix time when the verification code will no longer be legitimate.
 
