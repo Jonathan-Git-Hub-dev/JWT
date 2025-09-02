@@ -13,7 +13,7 @@ the documentation for JWT can be found here [JWT_Documentation](https://www.jwt.
 
 ### System breakdown
 This system implements JWT for user verification. The application offers user account creation with email verification, user login and account password resetting through email. when a user has provided the correct credentials and been verified (this happens on login, successful email verification of a new account and a successful email password reset) the user receives a JWT and a refresh token. The system operates hierarchically, JWT Access tokens could potentially be sent over the internet hundreds of times to access recourses, because it is so exposed it is given only a short lifespan. [This life span is detailed  here](https://github.com/Jonathan-Git-Hub-dev/JWT/blob/main/src/token_configuration.json). Refresh tokens are more powerful as they can be used to create JWTs but are less frequently needed, this means they are exposed less which minimizes risk. The user’s actual credentials are the most import, being able to generate an unlimited number of refresh tokens, these credentials are only exposed a single time at the initial verification for the session.
-####Delployment guide
+#### Delployment guide
 To deploy this application, download the repo into a local folder.
 
 Follow this Vite set up guide
@@ -31,38 +31,26 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-
-Download React-Router-Dom and jQuery to the downloaded repo, this can be done using the following commands
+<br /><br />
+Download React-Router-Dom and jQuery to the downloaded repo, this can be done using the following commands:
 -	npm install react-router-dom
 -	npm install jquery
-
-set up the backend:
-local host a PHP server on your machine (I am using Xampp, in which PHP scripts have to be moved into the htdocs file to be run) change the Url variable found in constants.js to the path to your PHP server. 
-Run an SQL database (this can also be done using Xampp). Run the SQL commands found in sql.txt to initialize the relevant tables needed for this application
-Download PHP mailer to handle emailing verification codes.
-In the PHP folder create a file called config.php it should have the following structure with all the blank strings substituted for your SQL credentials and your credentials for Gmail (to successfully send email with Gmail and PHP mailer two-factor authentication must be set up and an app password must be requested).
 <br /><br />
-<?php
-
-$config = [
-    "database" => [
-        "server_name" => "",
-        "username" => "",
-        "password" => "",
-        "database" => "JWT"
-    ],
-    "mail_credentials" => [
-        "username" => "",
-        "password" => ""
-    ]
-];
-
-Finally, the application can be run using the command 
--	npm run dev
+##### set up the backend:
+local host a PHP server on your machine (I am using Xampp, in which PHP scripts have to be moved into the htdocs file to be run) change the Url variable found in constants.js to the path to your PHP server. <br /><br />
+Run an SQL database (this can also be done using Xampp). Run the SQL commands found in sql.txt to initialize the relevant tables needed for this application.<br /><br />
+Download PHP mailer to handle emailing verification codes.<br /><br />
+In the PHP folder create a file called config.php it should have the [following structure](https://github.com/Jonathan-Git-Hub-dev/JWT/blob/main/src/PHP/config.php) with all the blank strings substituted for your SQL credentials and your credentials for Gmail (to successfully send email with Gmail and PHP mailer two-factor authentication must be set up and an app password must be requested).<br /><br />
+<br /><br />
 
 
-###API
-[API documentation in OpenAPI format can be found here]( https://jonathan-git-hub-dev.github.io/JWT/API/index.html)
+Finally, the application can be run using the command: 
+
+-	npm run dev<br />
+
+
+### API
+[API documentation in OpenAPI format can be found here](https://jonathan-git-hub-dev.github.io/JWT/API/index.html)
 
 
 
@@ -76,7 +64,7 @@ the "User" table represents a fully created user account.
 - uId : Primary index of this table.
 - uEmail : Unique email associated with account.
 - uPass : Password for the account in hashed format.
--salt : Added when hashing password for security reasons. 
+- salt : Added when hashing password for security reasons. 
 - resets : How many times the password reset sequence has been requested for this account.
 
 #### Incomplete User
@@ -85,7 +73,7 @@ the "Incomplete_User" represents a preliminary stage where a user has created an
 - uId : Primary index of this table.
 - uEmail : Unique email associated with account.
 - uPass : Password for the account in hashed format.
--salt : Added when hashing password for security reasons. 
+- salt : Added when hashing password for security reasons. 
 - varificationCode : The 6 digit code sent to the email associated with this account.t
 - expiry : The Unix time when the verification code will no longer be legitimate.
 
