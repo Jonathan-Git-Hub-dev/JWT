@@ -19,7 +19,7 @@ CREATE TABLE Incomplete_User (
     uEmail varchar(100) NOT NULL UNIQUE,
     uPass varchar(200) COLLATE latin1_general_cs NOT NULL,
     salt varchar(30) COLLATE latin1_general_cs NOT NULL,
-    varificationCode varchar(6) NOT NULL,
+    verificationCode varchar(6) NOT NULL,
     expiry BIGINT NOT NULL, 
     
     PRIMARY KEY (uId)

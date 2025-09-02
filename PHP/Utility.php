@@ -11,7 +11,7 @@ use PHPMailer\PHPMailer\Exception;
 $error_code_standard = '{"Status":"500"}';
 $error_code_bad_data = '{"Status":"403"}';
 $success_code_full = '{"Status":"400"}';//not encapsulated because data might also be sent
-$success_code = '"Status":"400"';//not encapsulated because data will also be sent
+$success_code = '"Status":"400"';//not encapsulated because data will also be sent 
 
 
 //sql connections
@@ -108,8 +108,8 @@ function Send_Email($email, $message)
     $mail->Port = 587;
     
     //your google accound credentials here
-    $mail->Username = $config["mail_credentials"]["username"];
-    $mail->Password = $config["mail_credentials"]["password"];
+    $mail->Username = $GLOBALS['config']["mail_credentials"]["username"];
+    $mail->Password = $GLOBALS['config']["mail_credentials"]["password"];
 
     $mail->setFrom("noReply@gmail.com", "account");
     $mail->isHTML(false);

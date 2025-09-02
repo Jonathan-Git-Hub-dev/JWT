@@ -53,6 +53,7 @@ export default function UserPage()
             data: {token : sessionStorage.getItem("accessToken")}
         })
         .done(function(data){
+            //console.log(data)
             const response = JSON.parse(data);
             if(response.Status == success_code)
             {

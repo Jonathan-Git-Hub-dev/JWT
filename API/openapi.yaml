@@ -1,0 +1,210 @@
+
+openapi: 3.0.1
+info:
+  title: JWT implementation
+  description: This API implements a minimal version of JSON Web Tokens (JWT)
+  version: 1.0.1
+  contact:
+    name: Jonathan P
+paths: 
+  /Create_User:
+    post:
+      summary: Starts the Create User sequence.
+      description: |
+        This Interface Creates an entry in a preliminary table to the user table.
+        It then sends the verification code to the email provided.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 10
+            maxLength: 30
+      responses:
+        "400":
+          description: Success, User added to table.
+        "403":
+          description: Failure, Data received missing or in incorrect format.
+        "500":
+          description: Failure, Server error.
+  /Confirm_User:
+    post:
+      summary: Validates user email with verification code.
+      description: Creates entry in user table when a valid email and verification code pair are provided.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code
+          description: emailed verification code.
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 100000
+            maximum: 999999
+      responses:
+        "400":
+          description: Success, User added to table.
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    Data:
+                      type: string
+                      description: An access token followed by a refresh token separated by a comma
+        "403":
+          description: Failure, Data received missing or in incorrect format.
+        "500":
+          description: Failure, Server error.
+  /Login:
+    post:
+      summary: Checks provided credentials.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 10
+            maxLength: 30
+      responses:
+        "400":
+          description: Success, able to log in.
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    Data:
+                      type: string
+                      description: An access token followed by a refresh token separated by a comma
+        "403":
+          description: Failure, Data received missing or in incorrect format.
+        "408":
+          description: Failure, Credentials provided don’t exist.
+        "500":
+          description: Failure, Server error.
+  /Reset_Send:
+    post:
+      summary: Sends email password reset code out.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          description: Email sent.
+        "403":
+          description: Failure, Data received missing or in incorrect format.
+        "429":
+          description: Failure, Operation tried too many times.
+        "500":
+          description: Failure, Server error.
+  /Reset_Receive:
+    post:
+      summary: Resets user password.
+      description: Alters password field of user table when valid email and reset_code pair received.
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 10
+            maxLength: 30
+        - name: code
+          description: emailed verification code.
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 100000
+            maximum: 999999
+      responses:
+        "400":
+          description: Success, password updated.
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    Data:
+                      type: string
+                      description: An access token followed by a refresh token separated by a comma
+        "403":
+          description: Failure, Data received missing or in incorrect format.
+        "429":
+          description: Failure, Operation tried too many times.
+        "500":
+          description: Failure, Server error.
+  /Get_Access_Token:
+    post:
+      summary: Generates new access token.
+      parameters:
+        - name: uid
+          description: user's unique identifier.
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: refresh
+          description: user's session refresh token.
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          description: Success, new token created.
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    Data:
+                      type: string
+                      description:  Access token
+        "403":
+          description: Failure, Data received missing or in incorrect format.
+        "499":
+          description: Failure, Refresh token expired.
+        "500":
+          description: Failure, Server error.
+  /Validate_Access_Token:
+    post:
+      summary: Verifies claims made by an access token.
+      parameters:
+        - name: token
+          description: user's access token.
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          description: Success, claims made in token correct.
+        "403":
+          description: Failure, Data received missing or in incorrect format.
+

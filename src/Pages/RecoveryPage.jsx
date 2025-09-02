@@ -81,6 +81,7 @@ export default function RecoveryPage()
             data: {email: email_input.current.value}
         })
         .done(function(data){
+            //console.log(data)
             const response = JSON.parse(data);
             Turn_Off_Load_Animation(loading_ref);
             if(response.Status == server_error || response.Status == data_error)

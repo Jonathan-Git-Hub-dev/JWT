@@ -8,6 +8,6 @@ function Generate_Credentials($uid)
     $refresh_token = Generate_Refresh_Token($uid);
     $access_token = Generate_Access_token($uid);
     $full_token = $access_token . "," . base64_encode($refresh_token);
-    $response = '{' . $GLOBALS['error_code_standard'] . ',"Data":"' . $full_token . '"}';
+    $response = '{' . $GLOBALS['success_code'] . ',"Data":"' . $full_token . '"}';
     Finish($response);
 }
