@@ -13,7 +13,7 @@ the documentation for JWT can be found here [JWT_Documentation](https://www.jwt.
 
 ### System breakdown
 This system implements JWT for user verification. The application offers user account creation with email verification, user login and account password resetting through email. when a user has provided the correct credentials and been verified (this happens on login, successful email verification of a new account and a successful email password reset) the user receives a JWT and a refresh token. The system operates hierarchically, JWT Access tokens could potentially be sent over the internet hundreds of times to access recourses, because it is so exposed it is given only a short lifespan. [This life span is detailed  here](https://github.com/Jonathan-Git-Hub-dev/JWT/blob/main/src/token_configuration.json). Refresh tokens are more powerful as they can be used to create JWTs but are less frequently needed, this means they are exposed less which minimizes risk. The user’s actual credentials are the most import, being able to generate an unlimited number of refresh tokens, these credentials are only exposed a single time at the initial verification for the session.
-####Delployment guide
+#### Delployment guide
 To deploy this application, download the repo into a local folder.
 
 Follow this Vite set up guide
