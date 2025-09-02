@@ -40,7 +40,7 @@ Download React-Router-Dom and jQuery to the downloaded repo, this can be done us
 local host a PHP server on your machine (I am using Xampp, in which PHP scripts have to be moved into the htdocs file to be run) change the Url variable found in constants.js to the path to your PHP server. <br /><br />
 Run an SQL database (this can also be done using Xampp). Run the SQL commands found in sql.txt to initialize the relevant tables needed for this application.<br /><br />
 Download PHP mailer to handle emailing verification codes.<br /><br />
-In the PHP folder create a file called config.php it should have the [following structure](https://github.com/Jonathan-Git-Hub-dev/JWT/blob/main/src/PHP/config.php) with all the blank strings substituted for your SQL credentials and your credentials for Gmail (to successfully send email with Gmail and PHP mailer two-factor authentication must be set up and an app password must be requested).<br /><br />
+In the PHP folder create a file called config.php it should have the [following structure](https://github.com/Jonathan-Git-Hub-dev/JWT/blob/main/PHP/config.php) with all the blank strings substituted for your SQL credentials and your credentials for Gmail (to successfully send email with Gmail and PHP mailer two-factor authentication must be set up and an app password must be requested).<br /><br />
 <br /><br />
 
 
