@@ -32,36 +32,36 @@ Currently, two official plugins are available:
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 <br /><br />
-Download React-Router-Dom and jQuery to the downloaded repo, this can be done using the following commands<br /><br />
+Download React-Router-Dom and jQuery to the downloaded repo, this can be done using the following commands:
 -	npm install react-router-dom
 -	npm install jquery
 <br /><br />
 set up the backend:
-local host a PHP server on your machine (I am using Xampp, in which PHP scripts have to be moved into the htdocs file to be run) change the Url variable found in constants.js to the path to your PHP server. 
-Run an SQL database (this can also be done using Xampp). Run the SQL commands found in sql.txt to initialize the relevant tables needed for this application
-Download PHP mailer to handle emailing verification codes.
-In the PHP folder create a file called config.php it should have the following structure with all the blank strings substituted for your SQL credentials and your credentials for Gmail (to successfully send email with Gmail and PHP mailer two-factor authentication must be set up and an app password must be requested).
+local host a PHP server on your machine (I am using Xampp, in which PHP scripts have to be moved into the htdocs file to be run) change the Url variable found in constants.js to the path to your PHP server. <br />
+Run an SQL database (this can also be done using Xampp). Run the SQL commands found in sql.txt to initialize the relevant tables needed for this application.<br />
+Download PHP mailer to handle emailing verification codes.<br />
+In the PHP folder create a file called config.php it should have the following structure with all the blank strings substituted for your SQL credentials and your credentials for Gmail (to successfully send email with Gmail and PHP mailer two-factor authentication must be set up and an app password must be requested).<br />
 <br /><br />
 <?php
 
-$config = [
-    "database" => [
-        "server_name" => "",
-        "username" => "",
-        "password" => "",
-        "database" => "JWT"
-    ],
-    "mail_credentials" => [
-        "username" => "",
-        "password" => ""
-    ]
-];
+$config = [<br />
+    "database" => [<br />
+        "server_name" => "",<br />
+        "username" => "",<br />
+        "password" => "",<br />
+        "database" => "JWT"<br />
+    ],<br />
+    "mail_credentials" => [<br />
+        "username" => "",<br />
+        "password" => ""<br />
+    ]<br />
+];<br /><br />
 
 Finally, the application can be run using the command 
 -	npm run dev
 
 
-###API
+### API
 [API documentation in OpenAPI format can be found here]( https://jonathan-git-hub-dev.github.io/JWT/API/index.html)
 
 
