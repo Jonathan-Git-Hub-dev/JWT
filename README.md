@@ -42,24 +42,10 @@ Run an SQL database (this can also be done using Xampp). Run the SQL commands fo
 Download PHP mailer to handle emailing verification codes.<br /><br />
 In the PHP folder create a file called config.php it should have the following structure with all the blank strings substituted for your SQL credentials and your credentials for Gmail (to successfully send email with Gmail and PHP mailer two-factor authentication must be set up and an app password must be requested).<br /><br />
 <br /><br />
-<?php
-
-$config = [<br />
-    "database" => [<br />
-        "server_name" => "",<br />
-        "username" => "",<br />
-        "password" => "",<br />
-        "database" => "JWT"<br />
-    ],<br />
-    "mail_credentials" => [<br />
-        "username" => "",<br />
-        "password" => ""<br />
-    ]<br />
-];<br /><br />
 
 Finally, the application can be run using the command: 
 
--	npm install jquery- npm run dev<br />
+-	npm run dev<br />
 
 
 ### API
