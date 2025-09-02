@@ -31,11 +31,11 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-
-Download React-Router-Dom and jQuery to the downloaded repo, this can be done using the following commands
+<br /><br />
+Download React-Router-Dom and jQuery to the downloaded repo, this can be done using the following commands<br /><br />
 -	npm install react-router-dom
 -	npm install jquery
-
+<br /><br />
 set up the backend:
 local host a PHP server on your machine (I am using Xampp, in which PHP scripts have to be moved into the htdocs file to be run) change the Url variable found in constants.js to the path to your PHP server. 
 Run an SQL database (this can also be done using Xampp). Run the SQL commands found in sql.txt to initialize the relevant tables needed for this application
