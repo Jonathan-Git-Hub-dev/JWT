@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useContext} from "react";
 import $ from 'jquery';
 import { Url, server_error, data_error} from "../constants";
-import Input from "../Components/Input";
+import Input from "../Components/Input.jsx";
 import {Validate_Password} from "../functions.js";
 import {useNavigate} from "react-router";
 import { loggedinContext } from '../App';

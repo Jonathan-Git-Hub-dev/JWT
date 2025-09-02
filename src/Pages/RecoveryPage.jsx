@@ -1,16 +1,16 @@
 //import {useNavigate, useParams } from "react-router";
 import { useRef,useContext, useState } from "react";
-import Input from "../Components/Input";
+import Input from "../Components/Input.jsx";
 import $ from 'jquery';
 import {useNavigate, useParams } from "react-router";
-import {Modal, modalOn, modalOff} from "../Components/Modal";
+import {Modal, modalOn, modalOff} from "../Components/Modal.jsx";
 import { Url,server_error,data_error } from "../constants";
 import {Validate_Password} from "../functions.js";
 import { loggedinContext } from '../App';
 import {Handle_Tokens} from "../functions.js";
 import './PagesCSS/RecoveryPage.css'
-import {Loading, Turn_On_Load_Animation, Turn_Off_Load_Animation} from "../Components/Loading.js";
-import CooldownButton from "../Components/CooldownButton.js";
+import {Loading, Turn_On_Load_Animation, Turn_Off_Load_Animation} from "../Components/Loading.jsx";
+import CooldownButton from "../Components/CooldownButton.jsx";
 
 
 

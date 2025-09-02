@@ -5,7 +5,8 @@ DROP TABLE User;
 CREATE TABLE User (
     uId int NOT NULL AUTO_INCREMENT UNIQUE,
     uEmail varchar(100) NOT NULL UNIQUE,
-    uPass varchar(30) COLLATE latin1_general_cs NOT NULL,
+    uPass varchar(200) COLLATE latin1_general_cs NOT NULL,
+    salt varchar(30) COLLATE latin1_general_cs NOT NULL,
     resets INT DEFAULT 0,
 
     PRIMARY KEY (uId) 
@@ -16,7 +17,8 @@ DROP TABLE Incomplete_User;
 CREATE TABLE Incomplete_User (
     uId int NOT NULL AUTO_INCREMENT UNIQUE,
     uEmail varchar(100) NOT NULL UNIQUE,
-    uPass varchar(30) COLLATE latin1_general_cs NOT NULL,
+    uPass varchar(200) COLLATE latin1_general_cs NOT NULL,
+    salt varchar(30) COLLATE latin1_general_cs NOT NULL,
     varificationCode varchar(6) NOT NULL,
     expiry BIGINT NOT NULL, 
     
@@ -26,7 +28,7 @@ CREATE TABLE Incomplete_User (
 DROP TABLE Recover_User;
 CREATE TABLE Recover_User (
     uEmail varchar(100) NOT NULL UNIQUE,
-    varificationCode varchar(6) NOT NULL,
+    verificationCode varchar(6) NOT NULL,
     expiry BIGINT NOT NULL,
     attempts INT DEFAULT 0,
     

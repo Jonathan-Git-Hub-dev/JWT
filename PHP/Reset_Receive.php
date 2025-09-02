@@ -34,7 +34,7 @@ if($row['attempts'] >= $config->max_guesses_per_code)
 }
 
 //check code and expiry
-if($row['varificationCode'] != $code)
+if($row['verificationCode'] != $code)
 {
     Finish($error_code_bad_data);
 }
@@ -44,10 +44,16 @@ if(time() > $row["expiry"])
 }
 
 
+//generate new salt and hash for password
+$salt = base64_encode(random_bytes(16));//generate salt
+$hashed_password = crypt($password, '$2y$10$' . $salt . '$');
+$max_password_length = 200;
+$trimmed_password = substr($hashed_password, 0, $max_password_length);
+
 //update password and attempts to reset password
 //delete entry for reseting process
-$sql = "UPDATE User SET uPass=?, resets=? WHERE uEmail=?";
-$result = Try_Query($sql, "sis",  $password, 0, $email);
+$sql = "UPDATE User SET uPass=?, salt=?, resets=? WHERE uEmail=?";
+$result = Try_Query($sql, "ssis",  $trimmed_password, $salt, 0, $email);
 $sql = "DELETE FROM Recover_User WHERE uEmail = ?";
 $query_exec = Try_Query($sql, "s", $email);
 

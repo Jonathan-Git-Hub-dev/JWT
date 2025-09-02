@@ -21,7 +21,7 @@ if($recovery_trys >= $token_info->max_recovery_attemps)
 }
 
 //new code
-$email_confirmation_code = (string) rand(100000, 999999);
+$email_confirmation_code = (string) random_int(100000, 999999);
 $expiry_time = time() + $token_info->recovery_code_life_time * 60;
 
 //either create or update entry in recover user table
@@ -29,18 +29,18 @@ $sql = "SELECT * FROM Recover_User WHERE uEmail = ?";
 $result = Try_Query($sql, "s", $email);
 if ($result->num_rows > 0)//change code
 {
-    $sql = "UPDATE Recover_User SET attempts = ?, varificationCode = ?, expiry= ? WHERE uEmail = ?";
+    $sql = "UPDATE Recover_User SET attempts = ?, verificationCode = ?, expiry= ? WHERE uEmail = ?";
     $result = Try_Query($sql, "isis",0, $email_confirmation_code, $expiry_time, $email);
 }
 else//create new entery
 { 
-    $sql = "INSERT INTO Recover_User (uEmail, varificationCode, expiry) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO Recover_User (uEmail, verificationCode, expiry) VALUES (?, ?, ?)";
 	$result = Try_Query($sql, "ssi", $email, $email_confirmation_code, $expiry_time);
 }
 
 //incrementing attempts
 $sql = "UPDATE User SET resets=? WHERE uEmail=?";
-$result = Try_Query($sql, "is", $trys, $email);
+$result = Try_Query($sql, "is", $recovery_trys, $email);
 
 
 Send_Email($email, "Your recovery code is: $email_confirmation_code");

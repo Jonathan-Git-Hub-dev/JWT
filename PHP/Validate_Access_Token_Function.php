@@ -63,15 +63,15 @@ function Validate_Access_Token($access_token)
     $key = $temp['secret'];
 
     //checking hash
-    $hmac_sha256;
+    $hash;
     $token = $head . ".".$body;
     try
     {
-        $hmac_sha256 = hash_hmac($head_as_php_object->alg, $token, $key, false);
+        $hash = hash_hmac($head_as_php_object->alg, $token, $key, false);
     }
     catch (ValueError $e)
     {Finish($GLOBALS['error_code_bad_data']);}
-    if($decode_hash != $hmac_sha256)
+    if($decode_hash != $hash)
     {
         Finish($GLOBALS['error_code_bad_data']);
     }

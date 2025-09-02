@@ -1,11 +1,13 @@
 <?php
 header("Access-Control-Allow-Origin: *");//can be changed to be more specific
+require "config.php";
+
 
 //php mailer
 require "vendor/autoload.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+ 
 $error_code_standard = '{"Status":"500"}';
 $error_code_bad_data = '{"Status":"403"}';
 $success_code_full = '{"Status":"400"}';//not encapsulated because data might also be sent
@@ -13,10 +15,11 @@ $success_code = '"Status":"400"';//not encapsulated because data will also be se
 
 
 //sql connections
-$server_name = "localhost";
-$username = "root";
-$password = "";
-$database = "JWT";
+$server_name = $config["database"]["server_name"];
+$username = $config["database"]["username"];
+$password = $config["database"]["password"];
+$database = $config["database"]["database"];
+
 $conn = new mysqli($server_name, $username, $password, $database);
 if ($conn->connect_error)
 {
@@ -66,7 +69,7 @@ function Try_Query($sql, $numVars, ...$vars)
 
 function Validate_Email($email)
 {
-    if(filter_var($email, FILTER_VALIDATE_EMAIL))
+    if(filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) <= 100) 
     {
         return true;
     }
@@ -91,7 +94,7 @@ function Get_Configuration()
     {
         Finish($GLOBALS['error_code_standard']);
     }
-    return json_decode($json_string); 
+    return json_decode($json_string);  
 }
 
 
@@ -105,8 +108,8 @@ function Send_Email($email, $message)
     $mail->Port = 587;
     
     //your google accound credentials here
-    $mail->Username = ;
-    $mail->Password = ;
+    $mail->Username = $config["mail_credentials"]["username"];
+    $mail->Password = $config["mail_credentials"]["password"];
 
     $mail->setFrom("noReply@gmail.com", "account");
     $mail->isHTML(false);

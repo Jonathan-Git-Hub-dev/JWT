@@ -1,4 +1,5 @@
 {
+    "token_algorithm" : "sha256",
     "access_token_life_time" : 15,
     "access_token_life_time_minus_2" : 13,
     "refresh_token_life_time" : 1200,

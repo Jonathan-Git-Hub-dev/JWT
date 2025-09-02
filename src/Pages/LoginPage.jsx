@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router";
 import { useRef, useContext, useState } from "react";
-import Input from "../Components/Input";
+import Input from "../Components/Input.jsx";
 import { Url, server_error, data_error } from "../constants";
 
 import {Handle_Tokens} from "../functions.js";

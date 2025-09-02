@@ -20,14 +20,15 @@ function Generate_Access_Token($user_id)
     //get time to live for this token saved in a configuration file
     $token_info = Get_Configuration();
     $time_to_live = time() + ($token_info->access_token_life_time * 60);
+    $hashing_algortihm = $token_info->token_algorithm;
     
     //create token
-    $token_header = base64_encode('{"alg":"sha256"}');
+    $token_header = base64_encode('{"alg":"' . $hashing_algortihm .'"}');
     $token_body = base64_encode('{"uid":"' . $user_id .  '","exp":"' . $time_to_live . '"}');
     $token_header_body = $token_header . "." . $token_body;
 
     //create hash
-    $hmac_sha256 = hash_hmac('sha256', $token_header_body, $key, false);
+    $signature = hash_hmac($hashing_algortihm, $token_header_body, $key, false);
 
-    return $token_header_body . "." . base64_encode($hmac_sha256);
+    return $token_header_body . "." . base64_encode($signature);
 }

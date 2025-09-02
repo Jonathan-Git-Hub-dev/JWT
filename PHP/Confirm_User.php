@@ -8,7 +8,7 @@ $code = Declared($_POST["code"]);
 
 
 //checking if these credentials exist
-$sql = "SELECT * FROM Incomplete_User WHERE uEmail = ? AND varificationCode = ?";
+$sql = "SELECT * FROM Incomplete_User WHERE uEmail = ? AND verificationCode = ?";
 $result = Try_Query($sql, "ss", $email, $code);
 if ($result->num_rows <= 0)
 {
@@ -21,14 +21,11 @@ if(time() > $row["expiry"])//make sure it has been less then 10 min
     Finish($error_code_bad_data);
 }
 $password = $row["uPass"];
-if(!Validate_Password($password))
-{
-    Finish($error_code_bad_data);
-} 
+$salt = $row["salt"];
 
 //create entery in the real user table and remove enrty from transitional table
-$sql = "INSERT INTO User (uEmail, uPass) VALUES (?, ?)";
-$result = Try_Query($sql, "ss", $email, $password);
+$sql = "INSERT INTO User (uEmail, uPass, salt) VALUES (?, ?, ?)";
+$result = Try_Query($sql, "sss", $email, $password, $salt);
 $sql = "DELETE FROM Incomplete_User WHERE BINARY uEmail = ?";
 $query_exec = Try_Query($sql, "s", $email);
 
